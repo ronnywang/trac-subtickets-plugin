@@ -167,12 +167,14 @@ class SubTicketsModule(Component):
                         type = tag.td(ticket['type'])
                         # 3rd column
                         status = tag.td(ticket['status'])
-                        # 4th column
+                        # 4th column due day
+                        due_date = tag.td(ticket['due_date']);
+                        # 5th column
                         href = req.href.query(status='!closed',
                                               owner=ticket['owner'])
                         owner = tag.td(tag.a(ticket['owner'], href=href))
 
-                        tbody.append(tag.tr(summary, type, status, owner))
+                        tbody.append(tag.tr(summary, type, status, due_date, owner))
                         _func(children[id], depth + 1)
 
                 _func(data['subtickets'])
